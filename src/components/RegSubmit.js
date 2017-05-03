@@ -1,19 +1,19 @@
 // Register Screen 2 JS code
 
 import React, { Component } from 'react';
-import { 
-    AppRegistry, 
+import {
+    AppRegistry,
     StyleSheet,
-    Text, 
-    TextInput, 
-    Image, 
-    View, 
+    Text,
+    TextInput,
+    Image,
+    View,
     Navigator,
-    Button, 
+    Button,
     TouchableOpacity,
-    Keyboard, 
+    Keyboard,
     KeyboardAvoidingView } from 'react-native';
-import BottomNav from './BottomNav'; 
+import BottomNav from './BottomNav';
 import Register from './Register';
 import Main from './Main';
 import io from 'socket.io-client/dist/socket.io';
@@ -46,7 +46,7 @@ export default class RegSubmit extends Component {
             futDate: '', //(cDate.getMonth()+1).toString() + '-' + cDate.getDate().toString() + '-' + (cDate.getFullYear()+1).toString()
         };
         this.data = {
-        client: "Admin",
+        client: "Mobile",
         username: this.state.uname,
         userID: parseInt(this.state.NSHE),
         cardID: parseInt(this.state.cid),
@@ -114,7 +114,7 @@ export default class RegSubmit extends Component {
                         Welcome, {this.state.fname}
                     </Text>
                     <Text style={styles.error}>{msg}</Text>
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({cid: event.nativeEvent.text})}
                         placeholder="card id *"
                         onSubmitEditing={() => this.NSHEInput.focus()}
@@ -122,7 +122,7 @@ export default class RegSubmit extends Component {
                         autoCorrect={false}
                         style={styles.input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({NSHE: event.nativeEvent.text})}
                         placeholder="NSHE number *"
                         onSubmitEditing={() => this.vLicInput.focus()}
@@ -131,7 +131,7 @@ export default class RegSubmit extends Component {
                         style={styles.input}
                         ref={(input) => this.NSHEInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({vLic: event.nativeEvent.text})}
                         placeholder="licence plate number *"
                         onSubmitEditing={() => this.vColInput.focus()}
@@ -140,7 +140,7 @@ export default class RegSubmit extends Component {
                         style={styles.input}
                         ref={(input) => this.vLicInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({vColor: event.nativeEvent.text})}
                         placeholder="vehicle color *"
                         onSubmitEditing={() => this.vMakeInput.focus()}
@@ -149,7 +149,7 @@ export default class RegSubmit extends Component {
                         style={styles.input}
                         ref={(input) => this.vColInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({vMake: event.nativeEvent.text})}
                         placeholder="vehicle make *"
                         onSubmitEditing={() => this.vModInput.focus()}
@@ -158,7 +158,7 @@ export default class RegSubmit extends Component {
                         style={styles.input}
                         ref={(input) => this.vMakeInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({vModel: event.nativeEvent.text})}
                         placeholder="vehicle model *"
                         onSubmitEditing={() => this.vYearInput.focus()}
@@ -167,7 +167,7 @@ export default class RegSubmit extends Component {
                         style={styles.input}
                         ref={(input) => this.vModInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({vYear: event.nativeEvent.text})}
                         placeholder="vehicle year *"
                         autoCapitalize="none"
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#8cc63f'
-    }, 
+    },
     registerForm: {
         flex: 1,
         width: undefined,
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
         backgroundColor:'transparent',
         justifyContent: 'center',
         alignItems: 'center',
-    },   
+    },
     input: {
         height: 40,
         width: 250,
@@ -209,12 +209,12 @@ const styles = StyleSheet.create({
     registerButton: {
         backgroundColor: '#67922d',
         paddingVertical: 10
-    },    
+    },
     buttonText: {
         width: 250,
         textAlign: 'center',
         fontWeight: '700'
-    },    
+    },
     error: {
         color: 'red'
     },
