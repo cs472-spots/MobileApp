@@ -1,19 +1,19 @@
 // Register Screen JS code
 
 import React, { Component } from 'react';
-import { 
-    AppRegistry, 
+import {
+    AppRegistry,
     StyleSheet,
-    Text, 
-    TextInput, 
-    Image, 
-    View, 
+    Text,
+    TextInput,
+    Image,
+    View,
     Navigator,
-    Button, 
+    Button,
     TouchableOpacity,
-    Keyboard, 
+    Keyboard,
     KeyboardAvoidingView } from 'react-native';
-import BottomNav from './BottomNav'; 
+import BottomNav from './BottomNav';
 import RegSubmit from './RegSubmit';
 
 export default class Register extends Component {
@@ -74,7 +74,7 @@ export default class Register extends Component {
                 source={require('./images/register_bg.png')}
                 style={styles.registerForm}>
                     <Text style={styles.error}>{msg}</Text>
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({fname: event.nativeEvent.text})}
                         placeholder="first name *"
                         onSubmitEditing={() => this.lastnameInput.focus()}
@@ -82,7 +82,7 @@ export default class Register extends Component {
                         autoCorrect={false}
                         style={styles.input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({lname: event.nativeEvent.text})}
                         placeholder="last name *"
                         onSubmitEditing={() => this.usernameInput.focus()}
@@ -91,7 +91,7 @@ export default class Register extends Component {
                         style={styles.input}
                         ref={(input) => this.lastnameInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({uname: event.nativeEvent.text})}
                         placeholder="username *"
                         onSubmitEditing={() => this.passwordInput.focus()}
@@ -100,7 +100,7 @@ export default class Register extends Component {
                         style={styles.input}
                         ref={(input) => this.usernameInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({password: event.nativeEvent.text})}
                         placeholder="password *"
                         onSubmitEditing={() => this.emailInput.focus()}
@@ -108,7 +108,7 @@ export default class Register extends Component {
                         style={styles.input}
                         ref={(input) => this.passwordInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({email: event.nativeEvent.text})}
                         placeholder="email address *"
                         onSubmitEditing={() => this.phoneInput.focus()}
@@ -118,9 +118,9 @@ export default class Register extends Component {
                         style={styles.input}
                         ref={(input) => this.emailInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({pnum: event.nativeEvent.text})}
-                        placeholder="phone numer "
+                        placeholder="phone number "
                         autoCapitalize="none"
                         autoCorrect={false}
                         style={styles.input}
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#8cc63f'
-    }, 
+    },
     registerForm: {
         flex: 1,
         width: undefined,
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
         backgroundColor:'transparent',
         justifyContent: 'center',
         alignItems: 'center',
-    },   
+    },
     input: {
         height: 40,
         width: 250,
@@ -160,12 +160,12 @@ const styles = StyleSheet.create({
     registerButton: {
         backgroundColor: '#67922d',
         paddingVertical: 10
-    },    
+    },
     buttonText: {
         width: 250,
         textAlign: 'center',
         fontWeight: '700'
-    },    
+    },
     error: {
         color: 'red'
     },

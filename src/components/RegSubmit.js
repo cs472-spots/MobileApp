@@ -45,33 +45,6 @@ export default class RegSubmit extends Component {
             curDate: '', //(cDate.getMonth()+1).toString() + '-' + cDate.getDate().toString() + '-' + cDate.getFullYear().toString(),
             futDate: '', //(cDate.getMonth()+1).toString() + '-' + cDate.getDate().toString() + '-' + (cDate.getFullYear()+1).toString()
         };
-        this.data = {
-        client: "Mobile",
-        username: this.state.uname,
-        userID: parseInt(this.state.NSHE),
-        cardID: parseInt(this.state.cid),
-        firstName: this.state.fname,
-        lastName: this.state.lname,
-        email: this.state.email,
-        phone: parseInt(this.state.pnum),
-        gotPermit: true,
-        permitType: this.state.permitType,
-        purchaseDate: this.state.curDate,
-        expDate: this.state.futDate,
-        type: this.state.permitType,
-        vehicleInt: 10, //vInt,
-        v1_year: parseInt(this.state.vYear),
-        v1_make: this.state.vMake,
-        v1_model: this.state.vModel,
-        v1_color: this.state.vColor,
-        v1_plate: this.state.vLic,
-        v2_year: 2012,
-        v2_make: "Honda",
-        v2_model: "Civic",
-        v2_color: "Red",
-        v2_plate: "licensePlate2",
-        flag: "register"
-    };
     }
 
     registerCheck(state) {
@@ -96,10 +69,39 @@ export default class RegSubmit extends Component {
     }
 
     Register(state) {
-        this.socket.emit('client', this.data);
-        this.socket.on('reply', (msg)=> {
+      this.socket.emit('hello', 'Hello from Mobile User');
+      this.socket.on('reply', (msg)=> {
         console.log('Message: ' + msg);
-        })
+      })
+      this.data = {
+        client: 'Mobile',
+        username: state.uname,
+        userID: parseInt(state.NSHE),
+        cardID: parseInt(state.cid),
+        firstName: state.fname,
+        lastName: state.lname,
+        email: state.email,
+        phone: parseInt(state.pnum),
+        gotPermit: true,
+        permitType: state.permitType,
+        purchaseDate: state.curDate,
+        expDate: state.futDate,
+        type: state.permitType,
+        vehicleInt: 1, //vInt,
+        v1_year: parseInt(state.vYear),
+        v1_make: state.vMake,
+        v1_model: state.vModel,
+        v1_color: state.vColor,
+        v1_plate: state.vLic,
+        v2_year: 2012,
+        v2_make: "Honda",
+        v2_model: "Civic",
+        v2_color: "Red",
+        v2_plate: "licensePlate2",
+        flag: "register"
+      };
+
+      this.socket.emit('client', this.data);
     }
 
     render() {
