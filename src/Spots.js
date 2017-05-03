@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Main from './components/Main';
 import CheckIn from './components/CheckIn';
 import Register from './components/Register';
+import RegSubmit from './components/RegSubmit';
 
 export default class Spots extends Component {
 
@@ -46,8 +47,17 @@ export default class Spots extends Component {
                 )
             case 'Register':
                 return (<Register navigator={navigator} title="Register"/>)
+            case 'RegSubmit':
+                return (<RegSubmit navigator={navigator} title="RegSubmit" 
+                    fname={route.fname} 
+                    lname={route.lname}
+                    uname={route.uname}
+                    email={route.email}
+                    //password={route.password}
+                    pnum={route.pnum}
+                />)
             case 'Main':
-                return (<Main navigator={navigator} title="Main" firstname={route.firstname} />)
+                return (<Main navigator={navigator} title="Main" fname={route.fname} />)
             case 'CheckIn':
                 return (<CheckIn navigator={navigator} title="CheckIn"/>)
         }
