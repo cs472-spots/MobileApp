@@ -14,58 +14,55 @@ import {
     Keyboard, 
     KeyboardAvoidingView } from 'react-native';
 import BottomNav from './BottomNav'; 
-import Main from './Main';
+import RegSubmit from './RegSubmit';
 
 export default class Register extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            firstname: '',
-            lastname: '',
-            username: '',
-            password: '',
+            //Account Information
+            uname: '',
+            cid: '',
+            //Student Information
+            fname: '',
+            lname: '',
+            NSHE:'',
             email: '',
-            phonenumber: '',
-            showError: false
-        }
+            pnum:'',
+            vColor:'',
+            vYear: '',
+            vLic:'',
+            vMake:'',
+            vModel:'',
+            permitType: 'student',
+            //Date
+            curDate: '', //(cDate.getMonth()+1).toString() + '-' + cDate.getDate().toString() + '-' + cDate.getFullYear().toString(),
+            futDate: '', //(cDate.getMonth()+1).toString() + '-' + cDate.getDate().toString() + '-' + (cDate.getFullYear()+1).toString()
+        };
     }
 
     registerCheck(state) {
         if(
-            state.firstname==''||
-            state.lastname==''||
-            state.username==''||
+            state.fname==''||
+            state.lname==''||
+            state.uname==''||
             state.password==''||
             state.email=='') {
             this.setState({showError: true});
         } else {
             this.setState({showError: false});
-            this.Register(state);
             this.props.navigator.push({
-                page: 'Main',
-                firstname: state.firstname
+                page: 'RegSubmit',
+                fname: state.fname,
+                lname: state.lname,
+                uname: state.uname,
+                //password: state.password,
+                email: state.email,
+                pnum: state.pnum
             })
             Keyboard.dismiss();
         }
-    }
-
-    Register(state) {
-        fetch('https://pocky-wocky.herokuapp.com/users', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                firstname: state.firstname,
-                lastname: state.lastname,
-                username: state.username,
-                password: state.password,
-                email: state.email,
-                phonenumber: state.phonenumber
-            })
-        })
     }
 
     render() {
@@ -78,7 +75,7 @@ export default class Register extends Component {
                 style={styles.registerForm}>
                     <Text style={styles.error}>{msg}</Text>
                     <TextInput 
-                        onChange={(event) => this.setState({firstname: event.nativeEvent.text})}
+                        onChange={(event) => this.setState({fname: event.nativeEvent.text})}
                         placeholder="first name *"
                         onSubmitEditing={() => this.lastnameInput.focus()}
                         autoCapitalize="none"
@@ -86,7 +83,7 @@ export default class Register extends Component {
                         style={styles.input}
                     />
                     <TextInput 
-                        onChange={(event) => this.setState({lastname: event.nativeEvent.text})}
+                        onChange={(event) => this.setState({lname: event.nativeEvent.text})}
                         placeholder="last name *"
                         onSubmitEditing={() => this.usernameInput.focus()}
                         autoCapitalize="none"
@@ -95,7 +92,7 @@ export default class Register extends Component {
                         ref={(input) => this.lastnameInput = input}
                     />
                     <TextInput 
-                        onChange={(event) => this.setState({username: event.nativeEvent.text})}
+                        onChange={(event) => this.setState({uname: event.nativeEvent.text})}
                         placeholder="username *"
                         onSubmitEditing={() => this.passwordInput.focus()}
                         autoCapitalize="none"
@@ -122,8 +119,8 @@ export default class Register extends Component {
                         ref={(input) => this.emailInput = input}
                     />
                     <TextInput 
-                        onChange={(event) => this.setState({phonenumber: event.nativeEvent.text})}
-                        placeholder="phone numer"
+                        onChange={(event) => this.setState({pnum: event.nativeEvent.text})}
+                        placeholder="phone numer "
                         autoCapitalize="none"
                         autoCorrect={false}
                         style={styles.input}
@@ -131,7 +128,7 @@ export default class Register extends Component {
                     />
                     <TouchableOpacity onPress={() => {this.registerCheck(this.state)}}>
                         <View style={styles.registerButton}>
-                            <Text style={styles.buttonText}>REGISTER</Text>
+                            <Text style={styles.buttonText}>NEXT</Text>
                         </View>
                     </TouchableOpacity>
                 </Image>

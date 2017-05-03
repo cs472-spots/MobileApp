@@ -13,6 +13,12 @@ import {
     Keyboard, 
     KeyboardAvoidingView } from 'react-native';
 import Main from './Main';
+window.navigator.userAgent = 'ReactNative';
+
+const io = require('socket.io-client/dist/socket.io');
+const socket = io('https://cs472-spots.herokuapp.com/', {
+  transports: ['websocket']
+});
 
 export default class Login extends Component {
 
@@ -32,8 +38,7 @@ export default class Login extends Component {
             this.setState({showError: false});
             this.props.navigator.push({
                 page: 'Main',
-                username: state.username,
-                password: state.password
+                firstname: state.username,
             })
             Keyboard.dismiss();
         }

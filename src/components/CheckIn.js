@@ -8,16 +8,29 @@ import {
     Image, 
     Text } from 'react-native';
 import BottomNav from './BottomNav';
+import MapView from 'react-native-maps';
+window.navigator.userAgent = 'ReactNative';
+
+const io = require('socket.io-client/dist/socket.io');
+const socket = io('https://unlv-spots.herokuapp.com/', {
+  transports: ['websocket']
+});
 
 export default class CheckIn extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            free: 3,
-            total: 6
+            free: '#',
+            total: 100
         }
     }   
+
+    RecieveSpots () {
+        this.socket.on('reply', (spots)=> {
+            
+        })
+    }
 
     render() {
 
@@ -31,74 +44,15 @@ export default class CheckIn extends Component {
 
                 <View style={styles.main}>
 
-                    <View style={styles.spotCol}>
-
-                        <View style={styles.spot}>
-                            <Image
-                                style={styles.spotImg}
-                                source={require('./images/spotFree.png')}>
-                                <View style={styles.spotTextView}>
-                                    <Text style={styles.spotText}>S1</Text>
-                                </View>
-                            </Image>
-                        </View>
-
-                        <View style={styles.spot}>
-                            <Image
-                                style={styles.spotImg}
-                                source={require('./images/spotTaken.png')}>
-                                <View style={styles.spotTextView}>
-                                    <Text style={styles.spotText}>S3</Text>
-                                </View>
-                            </Image>
-                        </View>
-
-                        <View style={styles.spot}>
-                            <Image
-                                style={styles.spotImg}
-                                source={require('./images/spotFree.png')}>
-                                <View style={styles.spotTextView}>
-                                    <Text style={styles.spotText}>S5</Text>
-                                </View>
-                            </Image>
-                        </View>
-
-                    </View>
-
-                    <View style={styles.spotCol}>
-
-                        <View style={styles.spot}>
-                            <Image
-                                style={styles.spotImg}
-                                source={require('./images/spotTakenRev.png')}>
-                                <View style={styles.spotTextView}>
-                                    <Text style={styles.spotText}>S2</Text>
-                                </View>
-                            </Image>
-                        </View>
-
-                        <View style={styles.spot}>
-                            <Image
-                                style={styles.spotImg}
-                                source={require('./images/spotTakenRev.png')}>
-                                <View style={styles.spotTextView}>
-                                    <Text style={styles.spotText}>S4</Text>
-                                </View>
-                            </Image>
-                        </View>
-
-                        <View style={styles.spot}>
-                            <Image
-                                style={styles.spotImg}
-                                source={require('./images/spotFreeRev.png')}>
-                                <View style={styles.spotTextView}>
-                                    <Text style={styles.spotText}>S6</Text>
-                                </View>
-                            </Image>
-                        </View>
-
-                    </View>
-                    
+                <MapView
+                    style={styles.map}
+                    initialRegion={{
+                        latitude: 36.111603,
+                        longitude: -115.141534,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421,
+                    }}
+                />
                 </View>
 
                 <View style={{flex: 2.5}}>
@@ -130,26 +84,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#ffffff'
     },
-    spotCol: {
-        flexDirection: 'column',
-    },
-    spot: {
-        paddingTop: 5,
-        paddingBottom: 5
-    },
-    spotImg: {
-        width: 150,
-        height: 75,
-        resizeMode: 'contain',
-    },
-    spotTextView: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    spotText: {
-        fontSize: 50,
-        color: '#434343'
+    map: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        position: 'absolute'
     }
 
 });

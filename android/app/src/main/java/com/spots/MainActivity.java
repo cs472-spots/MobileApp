@@ -1,7 +1,7 @@
 package com.spots;
 
 import com.facebook.react.ReactActivity;
-import com.oblador.vectoricons.VectorIconsPackage;
+import com.auth0.lock.react.LockReactPackage;
 
 public class MainActivity extends ReactActivity {
 
