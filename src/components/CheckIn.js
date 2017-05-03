@@ -48,9 +48,9 @@ export default class CheckIn extends Component {
                     style={styles.map}
                     initialRegion={{
                         latitude: 36.111603,
-                        longitude: -115.141534,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
+                        longitude: -115.141350,
+                        latitudeDelta: 0.0014,
+                        longitudeDelta: 0.0014,
                     }}
                 />
                 </View>
