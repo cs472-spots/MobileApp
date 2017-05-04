@@ -94,162 +94,60 @@ export default class CheckIn extends Component {
     }
 
     componentWillMount() {
-        var i;
-        var count = 0;
         // Initialize Spots
-        for(i = 0; i < START1NUM; i++) {
-            this.state.tMarkers.push(
-                {
-                    coordinate: {
-                    latitude: START1AT,
-                    longitude: START1ON - (SPACE*i),
-                    },
-                    vacant: true,
-                    key: count,
-                    identifier: 'Spot' + count,
-                    rotation: START1ROT
-                }
-            )
-            count++;
-        }
-        for(i = 0; i < START2NUM; i++) {
-            this.state.tMarkers.push(
-                {
-                    coordinate: {
-                    latitude: START2AT,
-                    longitude: START2ON - (SPACE*i),
-                    },
-                    vacant: true,
-                    key: count,
-                    identifier: 'Spot' + count,
-                    rotation: START2ROT
-                }
-            )
-            count++;
-        }
-        for(i = 0; i < START3NUM; i++) {
-            this.state.tMarkers.push(
-                {
-                    coordinate: {
-                    latitude: START3AT,
-                    longitude: START3ON - (SPACE*i),
-                    },
-                    vacant: true,
-                    key: count,
-                    identifier: 'Spot' + count,
-                    rotation: START3ROT
-                }
-            )
-            count++;
-        }
-        for(i = 0; i < START4NUM; i++) {
-            this.state.tMarkers.push(
-                {
-                    coordinate: {
-                    latitude: START4AT,
-                    longitude: START4ON - (SPACE*i),
-                    },
-                    vacant: true,
-                    key: count,
-                    identifier: 'Spot' + count,
-                    rotation: START4ROT
-                }
-            )
-            count++;
-        }
-        for(i = 0; i < START5NUM; i++) {
-            this.state.tMarkers.push(
-                {
-                    coordinate: {
-                    latitude: START5AT,
-                    longitude: START5ON - (SPACE*i),
-                    },
-                    vacant: true,
-                    key: count,
-                    identifier: 'Spot' + count,
-                    rotation: START5ROT
-                }
-            )
-            count++;
-        }
-        for(i = 0; i < START6NUM; i++) {
-            this.state.tMarkers.push(
-                {
-                    coordinate: {
-                    latitude: START6AT,
-                    longitude: START6ON - (SPACE*i),
-                    },
-                    vacant: true,
-                    key: count,
-                    identifier: 'Spot' + count,
-                    rotation: START6ROT
-                }
-            )
-            count++;
-        }
-        for(i = 0; i < START7NUM; i++) {
-            this.state.tMarkers.push(
-                {
-                    coordinate: {
-                    latitude: START7AT,
-                    longitude: START7ON - (SPACE*i),
-                    },
-                    vacant: true,
-                    key: count,
-                    identifier: 'Spot' + count,
-                    rotation: START7ROT
-                }
-            )
-            count++;
-        }
-        for(i = 0; i < START8NUM; i++) {
-            this.state.tMarkers.push(
-                {
-                    coordinate: {
-                    latitude: START8AT,
-                    longitude: START8ON - (SPACE*i),
-                    },
-                    vacant: true,
-                    key: count,
-                    identifier: 'Spot' + count,
-                    rotation: START8ROT
-                }
-            )
-            count++;
-        }
-        for(i = 0; i < START9NUM; i++) {
-            this.state.tMarkers.push(
-                {
-                    coordinate: {
-                    latitude: START9AT - ((SPACE-0.00001)*i),
-                    longitude: START9ON,
-                    },
-                    vacant: true,
-                    key: count,
-                    identifier: 'Spot' + count,
-                    rotation: START9ROT
-                }
-            )
-            count++;
-        }
-        for(i = 0; i < START10NUM; i++) {
-            this.state.tMarkers.push(
-                {
-                    coordinate: {
-                    latitude: START10AT,
-                    longitude: START10ON - (SPACE*i),
-                    },
-                    vacant: true,
-                    key: count,
-                    identifier: 'Spot' + count,
-                    rotation: START10ROT
-                }
-            )
-            count++;
-        }
+        initializeSpots(START1NUM, START1AT, START1ON, START1ROT);
+        initializeSpots(START2NUM, START2AT, START2ON, START2ROT);
+        initializeSpots(START3NUM, START3AT, START3ON, START3ROT);
+        initializeSpots(START4NUM, START4AT, START4ON, START4ROT);
+        initializeSpots(START5NUM, START5AT, START5ON, START5ROT);
+        initializeSpots(START6NUM, START6AT, START6ON, START6ROT);
+        initializeSpots(START7NUM, START7AT, START7ON, START7ROT);
+        initializeSpots(START8NUM, START8AT, START8ON, START8ROT);
+        initializeSpots(START9NUM, START9AT, START9N, START9ROT, true);
+        initializeSpots(START10NUM, START10AT, START10ON, START10ROT);
         this.setState({
             marker: this.state.tMarkers
         })
+    }
+    
+    initializeSpots(num, lat, lon, rot, vertical) {
+        var count = 0;
+        if (vertical === undefined) {
+            vertical = false;
+        } 
+        if (vertical) {
+             for(let i = 0; i < num; i++) {
+                this.state.tMarkers.push(
+                    {
+                        coordinate: {
+                        latitude: lat - ((SPACE-0.00001)*i),
+                        longitude: lon,
+                        },
+                        vacant: true,
+                        key: count,
+                        identifier: 'Spot' + count,
+                        rotation: rot
+                    }
+                )
+                count++;
+            }
+        } else {
+            for(let i = 0; i < num; i++) {
+                this.state.tMarkers.push(
+                    {
+                        coordinate: {
+                        latitude: lat,
+                        longitude: lon - (SPACE*i),
+                        },
+                        vacant: true,
+                        key: count,
+                        identifier: 'Spot' + count,
+                        rotation: rot
+                    }
+                )
+                count++;
+            }
+        }
     }
 
     componentDidMount() {
