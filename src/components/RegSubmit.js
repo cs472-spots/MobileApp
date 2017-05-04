@@ -1,19 +1,19 @@
 // Register Screen 2 JS code
 
 import React, { Component } from 'react';
-import { 
-    AppRegistry, 
+import {
+    AppRegistry,
     StyleSheet,
-    Text, 
-    TextInput, 
-    Image, 
-    View, 
+    Text,
+    TextInput,
+    Image,
+    View,
     Navigator,
-    Button, 
+    Button,
     TouchableOpacity,
-    Keyboard, 
+    Keyboard,
     KeyboardAvoidingView } from 'react-native';
-import BottomNav from './BottomNav'; 
+import BottomNav from './BottomNav';
 import Register from './Register';
 import Main from './Main';
 import io from 'socket.io-client/dist/socket.io';
@@ -45,33 +45,6 @@ export default class RegSubmit extends Component {
             curDate: '', //(cDate.getMonth()+1).toString() + '-' + cDate.getDate().toString() + '-' + cDate.getFullYear().toString(),
             futDate: '', //(cDate.getMonth()+1).toString() + '-' + cDate.getDate().toString() + '-' + (cDate.getFullYear()+1).toString()
         };
-        this.data = {
-        client: "Admin",
-        username: this.state.uname,
-        userID: parseInt(this.state.NSHE),
-        cardID: parseInt(this.state.cid),
-        firstName: this.state.fname,
-        lastName: this.state.lname,
-        email: this.state.email,
-        phone: parseInt(this.state.pnum),
-        gotPermit: true,
-        permitType: this.state.permitType,
-        purchaseDate: this.state.curDate,
-        expDate: this.state.futDate,
-        type: this.state.permitType,
-        vehicleInt: 10, //vInt,
-        v1_year: parseInt(this.state.vYear),
-        v1_make: this.state.vMake,
-        v1_model: this.state.vModel,
-        v1_color: this.state.vColor,
-        v1_plate: this.state.vLic,
-        v2_year: 2012,
-        v2_make: "Honda",
-        v2_model: "Civic",
-        v2_color: "Red",
-        v2_plate: "licensePlate2",
-        flag: "register"
-    };
     }
 
     registerCheck(state) {
@@ -96,10 +69,39 @@ export default class RegSubmit extends Component {
     }
 
     Register(state) {
-        this.socket.emit('client', this.data);
-        this.socket.on('reply', (msg)=> {
+      this.socket.emit('hello', 'Hello from Mobile User');
+      this.socket.on('reply', (msg)=> {
         console.log('Message: ' + msg);
-        })
+      })
+      this.data = {
+        client: 'Mobile',
+        username: state.uname,
+        userID: parseInt(state.NSHE),
+        cardID: parseInt(state.cid),
+        firstName: state.fname,
+        lastName: state.lname,
+        email: state.email,
+        phone: parseInt(state.pnum),
+        gotPermit: true,
+        permitType: state.permitType,
+        purchaseDate: state.curDate,
+        expDate: state.futDate,
+        type: state.permitType,
+        vehicleInt: 1, //vInt,
+        v1_year: parseInt(state.vYear),
+        v1_make: state.vMake,
+        v1_model: state.vModel,
+        v1_color: state.vColor,
+        v1_plate: state.vLic,
+        v2_year: 2012,
+        v2_make: "Honda",
+        v2_model: "Civic",
+        v2_color: "Red",
+        v2_plate: "licensePlate2",
+        flag: "register"
+      };
+
+      this.socket.emit('client', this.data);
     }
 
     render() {
@@ -114,7 +116,7 @@ export default class RegSubmit extends Component {
                         Welcome, {this.state.fname}
                     </Text>
                     <Text style={styles.error}>{msg}</Text>
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({cid: event.nativeEvent.text})}
                         placeholder="card id *"
                         onSubmitEditing={() => this.NSHEInput.focus()}
@@ -122,7 +124,7 @@ export default class RegSubmit extends Component {
                         autoCorrect={false}
                         style={styles.input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({NSHE: event.nativeEvent.text})}
                         placeholder="NSHE number *"
                         onSubmitEditing={() => this.vLicInput.focus()}
@@ -131,7 +133,7 @@ export default class RegSubmit extends Component {
                         style={styles.input}
                         ref={(input) => this.NSHEInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({vLic: event.nativeEvent.text})}
                         placeholder="licence plate number *"
                         onSubmitEditing={() => this.vColInput.focus()}
@@ -140,7 +142,7 @@ export default class RegSubmit extends Component {
                         style={styles.input}
                         ref={(input) => this.vLicInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({vColor: event.nativeEvent.text})}
                         placeholder="vehicle color *"
                         onSubmitEditing={() => this.vMakeInput.focus()}
@@ -149,7 +151,7 @@ export default class RegSubmit extends Component {
                         style={styles.input}
                         ref={(input) => this.vColInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({vMake: event.nativeEvent.text})}
                         placeholder="vehicle make *"
                         onSubmitEditing={() => this.vModInput.focus()}
@@ -158,7 +160,7 @@ export default class RegSubmit extends Component {
                         style={styles.input}
                         ref={(input) => this.vMakeInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({vModel: event.nativeEvent.text})}
                         placeholder="vehicle model *"
                         onSubmitEditing={() => this.vYearInput.focus()}
@@ -167,7 +169,7 @@ export default class RegSubmit extends Component {
                         style={styles.input}
                         ref={(input) => this.vModInput = input}
                     />
-                    <TextInput 
+                    <TextInput
                         onChange={(event) => this.setState({vYear: event.nativeEvent.text})}
                         placeholder="vehicle year *"
                         autoCapitalize="none"
@@ -191,7 +193,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#8cc63f'
-    }, 
+    },
     registerForm: {
         flex: 1,
         width: undefined,
@@ -199,7 +201,7 @@ const styles = StyleSheet.create({
         backgroundColor:'transparent',
         justifyContent: 'center',
         alignItems: 'center',
-    },   
+    },
     input: {
         height: 40,
         width: 250,
@@ -209,12 +211,12 @@ const styles = StyleSheet.create({
     registerButton: {
         backgroundColor: '#67922d',
         paddingVertical: 10
-    },    
+    },
     buttonText: {
         width: 250,
         textAlign: 'center',
         fontWeight: '700'
-    },    
+    },
     error: {
         color: 'red'
     },
